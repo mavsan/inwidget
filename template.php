@@ -45,6 +45,7 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 			}
 			.widget {
 				width:<?php echo $inWidget->width; ?>px;
+				max-width: 100%;
 				border:1px solid #c3c3c3;
 				background:#f9f9f9;
 				border-radius: 5px 5px 5px 5px;
@@ -67,7 +68,7 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 			}
 			.widget .title .text {
 				float:left;
-				width: <?php echo ($inWidget->width-44); ?>px;
+				width: calc(100% - 44px);
 				height:25px;
 				overflow:hidden;
 				margin:5px 0 0 0;
@@ -138,15 +139,15 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 				display:block;
 				float:left;
 				margin:0 5px 5px 0;
-				width:<?php echo $inWidget->imgWidth; ?>px;
-				height:<?php echo $inWidget->imgWidth; ?>px;
+				width: calc((100% - (5px + (9px * <?= $inWidget->inline?>))) / <?= $inWidget->inline?>);
+				height: calc((100% - (5px + (9px * <?= $inWidget->inline?>))) / <?= $inWidget->inline?>);
 				overflow:hidden;
 				border:2px solid #FFF;
 				box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 				ling-height:0px;
 			}
 			.widget .data .image img{
-				width:<?php echo $inWidget->imgWidth; ?>px;
+				width: 100%;
 			}
 			.widget .data .image:hover {
 				filter: alpha(opacity=80);
@@ -157,7 +158,7 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 				margin:10px 0 10px 0;
 			}
 			.copyright {
-				width:<?php echo $inWidget->width; ?>px;
+				width:100%;
 				margin:3px 0 0 0;
 				font-size:10px;
 				text-align:center;
