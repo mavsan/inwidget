@@ -170,6 +170,13 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 			.copyright a:hover {
 				text-decoration:underline;
 			}
+			@media all and (max-width: 320px)
+			{
+				.widget .data .image {
+					width: calc((100% - (5px + (9px * 2))) / 2);
+					height: calc((100% - (5px + (9px * 2))) / 2);
+				}
+			}
 		</style>
 	</head>
 <body>
