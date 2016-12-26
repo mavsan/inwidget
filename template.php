@@ -44,7 +44,6 @@ if(!is_object($inWidget->data)) die('<b style="color:red;">Cache file contains p
 				line-height:1px;
 			}
 			.widget {
-				width:<?php echo $inWidget->width; ?>px;
 				max-width: 100%;
 				border:1px solid #c3c3c3;
 				background:#f9f9f9;
