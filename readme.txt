@@ -1,4 +1,4 @@
-﻿/**
+ /**
  * Project:     inWidget: show pictures from instagram.com on your site!
  * File:        readme.txt
  *
@@ -64,38 +64,55 @@ Instagram разрешает отправлять лишь 5000 запрос в 
 * langDefault - язык виджета по умолчанию [ ru / en ]
 * langAuto - автоматически определять язык пользователя [ true / false ] 
 
+4.1. В файл стилей пропишите для виджета (здесь ширина 100%, т.к. ширина виджета регулируется блоком, в который включен этот виджет, требуется для адаптива), если виджетов несколько, вместо #идВашегоВиджета можно указать .классВиджетов:
+#идВашегоВиджета {
+    border:none;
+    overflow:hidden;
+    width: 100%;
+}
+
+4.2. В JavaScript файл добавьте инструкции (этот код будет автоматически назначать высоту виджету в зависимости от высоты содержимого, предполагается, что используется библиотека jQuery):
+$(document).ready(function () {
+    $("#идВашегоВиджета").load(function() {
+			$(this).height( $(this).contents().find("body").height() );
+		});
+
+		$(window).on('resize', function () {
+			$("#идВашегоВиджета").height( $("#instagramframe").contents().find("body").height() );
+		});
+});
+
 5. Вставьте виджет в сайт с помощью следующего кода:
 
-<!-- По умолчанию -->
-<iframe src='/inwidget/index.php' scrolling='no' frameborder='no' style='border:none;width:260px;height:330px;overflow:hidden;'></iframe> 
+<!-- По умолчанию -->  (если ширина родительского контейнера: 260px)
+<iframe src='/inwidget/index.php' scrolling='no' frameborder='no'></iframe> 
 
 Ещё примеры вставки с различным отображением виджета: 
 
-<!-- Без профиля -->
-<iframe src='/inwidget/index.php?toolbar=false' scrolling='no' frameborder='no' style='border:none;width:260px;height:320px;overflow:hidden;'></iframe>
+<!-- Без профиля --> (предполагается ширина родительского контейнера: 260px)
+<iframe src='/inwidget/index.php?toolbar=false' scrolling='no' frameborder='no'></iframe>
 
-<!-- Мини 1 -->
-<iframe src='/inwidget/index.php?width=100&inline=2&view=12&toolbar=false' scrolling='no' frameborder='no' style='border:none;width:100px;height:320px;overflow:hidden;'></iframe>
+<!-- Мини 1 --> (предполагается ширина родительского контейнера: 100px)
+<iframe src='/inwidget/index.php?inline=2&view=12&toolbar=false' scrolling='no' frameborder='no'></iframe>
 
-<!-- Мини 2 -->
-<iframe src='/inwidget/index.php?width=100&inline=1&view=3&toolbar=false' scrolling='no' frameborder='no' style='border:none;width:100px;height:320px;overflow:hidden;'></iframe>
+<!-- Мини 2 --> (предполагается ширина родительского контейнера: 100px)
+<iframe src='/inwidget/index.php?inline=1&view=3&toolbar=false' scrolling='no' frameborder='no'></iframe>
 
-<!-- Горизонтальная ориентация -->
-<iframe src='/inwidget/index.php?width=800&inline=7&view=14&toolbar=false' scrolling='no' frameborder='no' style='border:none;width:800px;height:295px;overflow:hidden;'></iframe>
+<!-- Горизонтальная ориентация --> (предполагается ширина родительского контейнера: 800px)
+<iframe src='/inwidget/index.php?inline=7&view=14&toolbar=false' scrolling='no' frameborder='no'></iframe>
 
-<!-- Крупные preview -->
-<iframe src='/inwidget/index.php?width=800&inline=3&view=9&toolbar=false&preview=large' scrolling='no' frameborder='no' style='border:none;width:800px;height:850px;overflow:hidden;'></iframe> 
+<!-- Крупные preview --> (предполагается ширина родительского контейнера: 800px)
+<iframe src='/inwidget/index.php?inline=3&view=9&toolbar=false&preview=large' scrolling='no' frameborder='no'></iframe> 
 
 // ----------------------------------------
 // Точная настройка отображения виджета:
 // ----------------------------------------
 
 Параметры передаются как GET переменные при обращении к скрипту виджета.
-К примеру, чтобы уставить ширину виджета 600px и вывести в строку пять фотографий, нужно добавить соотвествующие параметры в URL к скрипту. Т.е.: /inwidget/index.php?width=600&inline=5 
+К примеру, чтобы вывести в строку пять фотографий, нужно добавить соотвествующий параметр в URL к скрипту. Т.е.: /inwidget/index.php?inline=5 
 
 Список параметров:
 
-width – ширина виджета (по умолчанию 260px);
 inline – количество фотографий в строке (по умолчанию 4 шт.);
 view – сколько фотографий отображать в виджете (по умолчанию 12 шт., максимально 30 шт., можно исправить в config.php);
 toolbar – отобразить тулбар с аватаркой и статистикой (значения true/false, по умолчанию true);
